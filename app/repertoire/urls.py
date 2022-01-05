@@ -4,8 +4,6 @@ from . import views
 router = routers.SimpleRouter(trailing_slash=False)
 router.register(r"files", views.FileViewset)
 
-urlpatterns = [
-
-]
+urlpatterns = []
 
 urlpatterns += router.urls

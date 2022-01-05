@@ -1,4 +1,3 @@
-from django.contrib.postgres import fields
 from rest_framework.serializers import ModelSerializer
 from repertoire.models import File, Work
 

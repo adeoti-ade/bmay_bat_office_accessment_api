@@ -1,4 +1,3 @@
-from django.db import models
 from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
@@ -10,15 +9,14 @@ from .serializers import FileSerializer, WorkSerializer
 from .models import File, Work
 from .utils import get_source
 
-CACHE_TTL = getattr(settings, 'CACHE_TTL', DEFAULT_TIMEOUT)
-
+CACHE_TTL = getattr(settings, "CACHE_TTL", DEFAULT_TIMEOUT)
 
 
 class FileViewset(viewsets.ReadOnlyModelViewSet):
     queryset = File.objects.all()
     serializer_class = FileSerializer
 
-    @action(methods=['get'], detail=True, url_path="works")
+    @action(methods=["get"], detail=True, url_path="works")
     def works(self, request, *args, **kwargs):
         file = self.get_object()
         source = get_source(file)
@@ -33,7 +31,7 @@ class FileViewset(viewsets.ReadOnlyModelViewSet):
 
         return Response(data)
 
-    @action(methods=['get'], detail=True, url_path="works/(?P<work_id>[^/.]+)")
+    @action(methods=["get"], detail=True, url_path="works/(?P<work_id>[^/.]+)")
     def single_works(self, request, work_id, *args, **kwargs):
         file = self.get_object()
         source = get_source(file)
@@ -41,5 +39,3 @@ class FileViewset(viewsets.ReadOnlyModelViewSet):
         work_serializer = WorkSerializer(works_qs)
 
         return Response(work_serializer.data)
-
-

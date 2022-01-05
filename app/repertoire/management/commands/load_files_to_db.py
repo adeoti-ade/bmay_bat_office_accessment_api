@@ -4,9 +4,8 @@ from repertoire.models import File, Work
 from repertoire.utils import parse_file
 
 
-
 class Command(BaseCommand):
-    help = 'Create Works'
+    help = "Create Works"
 
     @transaction.atomic
     def handle(self, *args, **kwargs):
@@ -23,14 +22,9 @@ class Command(BaseCommand):
         works = []
         for file in file_array:
             files.append(
-                {
-                    "work_count": file["work_count"],
-                    "filename": file["filename"]
-                }
+                {"work_count": file["work_count"], "filename": file["filename"]}
             )
-            works.append(
-                file["works"]
-            )
+            works.append(file["works"])
         flat_works = [item for sublist in works for item in sublist]
         processed_works = []
         for item in flat_works:
