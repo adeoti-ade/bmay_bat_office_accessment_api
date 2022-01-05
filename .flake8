@@ -1,0 +1,5 @@
+[flake8]
+exclude = .git,__pycache__,docs/source/conf.py,old,build,dist,*migrations*,venv
+max-line-length = 120
+ignore = FI12,FI14,FI15,FI16,FI17,FI5,W503,W504,W505,W605
+require-code = True

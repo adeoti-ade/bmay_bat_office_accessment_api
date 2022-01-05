@@ -1,7 +1,7 @@
 import os
-
 import csv
-import json
+
+from .models import File
 path = "../../files"
 
 
@@ -45,3 +45,5 @@ def parse_file(path="files"):
 
     return files
 
+def get_source(file: File):
+    return file.filename.split(".")[0]
