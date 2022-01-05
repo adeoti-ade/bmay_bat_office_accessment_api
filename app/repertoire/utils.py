@@ -12,7 +12,7 @@ def parse_directory(dir):
 
 
 def csv_to_dict(csvFilePath):
-    jsonArray = []
+    dict_array = []
       
     #read csv file
     with open(csvFilePath, encoding='utf-8') as csvf: 
@@ -22,20 +22,26 @@ def csv_to_dict(csvFilePath):
         #convert each csv row into python dict
         for row in csvReader: 
             #add this python dict to json array
-            jsonArray.append(row)
+            dict_array.append(row)
     
-    return jsonArray
+    return dict_array, len(dict_array)
 
 
-def parse_file(path="../../files"):
+def parse_file(path="files"):
+
     dir = parse_directory(path)
     files = []
-    for file in dir:
-        filename = os.path.join(path, file)
-        if os.path.isfile(filename):
-            file_dict = csv_to_dict(filename)
-            files.append(file_dict)
+    for filename in dir:
+        filepath = os.path.join(path, filename)
+        if os.path.isfile(filepath):
+            file_dict, files_count = csv_to_dict(filepath)
+            files.append(
+                {
+                    "works": file_dict,
+                    "work_count": files_count,
+                    "filename": filename
+                }
+            )
 
     return files
 
-print(parse_file())
