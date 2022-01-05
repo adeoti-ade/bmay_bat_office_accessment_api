@@ -6,10 +6,9 @@ services:
     container_name: bmat_bo_db
     volumes:
       - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+    env_file:
+      - .env
+
   api:
     container_name: bmat_bo_api
     build: .
@@ -20,6 +19,8 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    env_file:
+      - .env
 
   api-docs:
     image: swaggerapi/swagger-ui

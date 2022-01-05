@@ -4,10 +4,6 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-^4imbn)zj28tgz!*@o8aj(*^hbi16=v%soe5(3^sv*xfv)!e!='
-
-
-ALLOWED_HOSTS = []
 
 
 # Application definition
