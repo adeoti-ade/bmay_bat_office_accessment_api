@@ -6,8 +6,12 @@ services:
     container_name: bmat_bo_db
     volumes:
       - ./data/db:/var/lib/postgresql/data
-    env_file:
-      - .env
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - djangonetwork
 
   api:
     container_name: bmat_bo_api
@@ -21,6 +25,10 @@ services:
       - db
     env_file:
       - .env
+    links:
+      - db:db
+    networks:
+      - djangonetwork
 
   api-docs:
     image: swaggerapi/swagger-ui
@@ -31,3 +39,8 @@ services:
       - ./openapi.yml:/openapi.yml
     environment:
       SWAGGER_JSON: /openapi.yml
+
+
+networks:
+  djangonetwork:
+      driver: bridge
