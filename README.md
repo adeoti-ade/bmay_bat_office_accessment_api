@@ -68,3 +68,5 @@ If you manage to ingest the three files provided, you'll be able to use the API 
 * Could you use the endpoints described in this assignment or would have to create some new endpoints to provide the works of the SingleView?
 
 * Imagine that the Single View has 20 million musical works, do you think your solution would have a similar response time? What technologies would you use to keep response times reasonable?
+
+Note: please check QuestionAnswers.md for answers to the questions

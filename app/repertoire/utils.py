@@ -7,12 +7,18 @@ path = "../../files"
 
 
 def parse_directory(dir):
+    """
+    parse a directory and return filename of files in it
+    """
     dir_list = os.listdir(dir)
 
     return dir_list
 
 
 def csv_to_dict(csvFilePath):
+    """
+    parse a csv file and return it's data as an array of dictionaries and it's count
+    """
     dict_array = []
 
     # read csv file
@@ -29,7 +35,9 @@ def csv_to_dict(csvFilePath):
 
 
 def parse_file(path="files"):
-
+    """
+    parse the files data
+    """
     dir = parse_directory(path)
     files = []
     for filename in dir:

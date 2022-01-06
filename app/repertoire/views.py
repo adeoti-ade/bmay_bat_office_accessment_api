@@ -2,9 +2,11 @@ from django.shortcuts import get_object_or_404
 from django.conf import settings
 from django.core.cache.backends.base import DEFAULT_TIMEOUT
 
-from rest_framework import viewsets
+from rest_framework import viewsets, filters
 from rest_framework.response import Response
 from rest_framework.decorators import action
+from django_filters.rest_framework import DjangoFilterBackend
+
 from .serializers import FileSerializer, WorkSerializer
 from .models import File, Work
 from .utils import get_source
@@ -15,6 +17,8 @@ CACHE_TTL = getattr(settings, "CACHE_TTL", DEFAULT_TIMEOUT)
 class FileViewset(viewsets.ReadOnlyModelViewSet):
     queryset = File.objects.all()
     serializer_class = FileSerializer
+    filter_backends = [filters.SearchFilter, DjangoFilterBackend]
+    search_fields = ["filename"]
 
     @action(methods=["get"], detail=True, url_path="works")
     def works(self, request, *args, **kwargs):
