@@ -16,6 +16,7 @@ services:
   api:
     container_name: bmat_bo_api
     build: .
+    image: huntarhio/bo_senior_web:latest
     # command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./app:/code
